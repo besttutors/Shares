@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 – Shares & Dividends | ML Aggarwal Class 10 ICSE</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #1a1a2e;
+  --paper:  #fdf8f0;
+  --cream:  #f5eed8;
+  --gold:   #c9a84c;
+  --gold2:  #e8c87a;
+  --accent: #2d6a4f;
+  --accent2:#52b788;
+  --red:    #9b2226;
+  --blue:   #1d3557;
+  --muted:  #6b6356;
+  --rule:   #d4c9a8;
+  --shadow: rgba(26,26,46,0.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* ── Noise texture overlay ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Layout ── */
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  position: relative; z-index: 1;
+}
+
+/* ── Header ── */
+.book-header {
+  text-align: center;
+  padding: 3.5rem 0 2rem;
+  border-bottom: 3px double var(--gold);
+  margin-bottom: 2.5rem;
+}
+.book-header .series-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+}
+.book-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+.book-header h1 span { color: var(--gold); }
+.book-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── TOC ── */
+.toc {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--gold);
+  border-radius: 2px;
+  padding: 1.4rem 2rem;
+  margin-bottom: 3rem;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.toc ul { list-style: none; }
+.toc ul li { margin: 0.25rem 0; }
+.toc ul li a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  border-bottom: 1px dotted var(--rule);
+  transition: color 0.2s, border-color 0.2s;
+}
+.toc ul li a:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── Formulas Box ── */
+.formula-box {
+  background: var(--blue);
+  color: #e8f4f0;
+  border-radius: 4px;
+  padding: 1.8rem 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.formula-box::after {
+  content: '∑';
+  position: absolute;
+  right: 1.5rem; top: 50%;
+  transform: translateY(-50%);
+  font-size: 7rem;
+  opacity: 0.06;
+  font-family: 'Playfair Display', serif;
+  pointer-events: none;
+}
+.formula-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--gold2);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+.formula-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+@media(max-width:600px){ .formula-grid { grid-template-columns: 1fr; } }
+.formula-item {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px;
+  padding: 0.65rem 1rem;
+}
+.formula-item .fname {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--gold2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+.formula-item .fexpr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  color: #c8f0e0;
+}
+
+/* ── Section headings ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--blue);
+  padding: 0.6rem 0 0.4rem;
+  border-bottom: 2px solid var(--gold);
+  margin: 3rem 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.section-title .sec-num {
+  background: var(--gold);
+  color: var(--blue);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+}
+
+/* ── Question card ── */
+.q-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(12px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.q-header {
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.9rem 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.q-num {
+  background: var(--blue);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.mcq .q-num  { background: var(--accent); }
+.ar  .q-num  { background: #7b2d8b; }
+.ct  .q-num  { background: var(--red); }
+
+.q-text {
+  font-size: 0.97rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ── Accordion toggle ── */
+.q-body {
+  display: none;
+  padding: 1.2rem 1.4rem 1.4rem;
+}
+.q-body.open { display: block; }
+
+.toggle-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--rule);
+  padding: 0.6rem 1.4rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+.toggle-btn:hover { background: var(--cream); color: var(--blue); }
+.toggle-btn .arr { transition: transform 0.25s; }
+.toggle-btn.open .arr { transform: rotate(90deg); }
+
+/* ── Inside solution ── */
+.reason-tag {
+  display: inline-block;
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  padding: 0.12rem 0.5rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.reason-box {
+  background: #f0faf4;
+  border-left: 3px solid var(--accent2);
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.91rem;
+  font-style: italic;
+  color: #2d5a40;
+  border-radius: 0 3px 3px 0;
+}
+
+.steps { list-style: none; margin: 0.5rem 0 0.8rem 0; }
+.steps li {
+  display: flex;
+  gap: 0.7rem;
+  font-size: 0.93rem;
+  margin-bottom: 0.4rem;
+  align-items: baseline;
+}
+.steps li::before {
+  content: '→';
+  color: var(--gold);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.math-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  margin: 0.4rem 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.ans-box {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 3px 3px 0;
+  padding: 0.65rem 1rem;
+  margin-top: 0.9rem;
+  font-weight: 600;
+  color: #5d4307;
+  font-size: 0.95rem;
+}
+.ans-box::before {
+  content: '✓ ';
+  color: var(--accent);
+}
+
+.sub-part {
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+  color: var(--blue);
+  font-size: 0.95rem;
+  border-bottom: 1px dotted var(--rule);
+  padding-bottom: 0.25rem;
+}
+
+/* MCQ option highlight */
+.correct-opt {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* AR special */
+.ar-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: #7b2d8b;
+  background: #f3e5f5;
+  border: 1px solid #ce93d8;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  margin-bottom: 0.6rem;
+  display: inline-block;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 2.5rem 0 1rem;
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Scroll top btn ── */
+#scrollTop {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 42px; height: 42px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 100;
+  box-shadow: 0 3px 10px var(--shadow);
+}
+#scrollTop.visible { opacity: 1; }
+
+/* ── Progress bar ── */
+#progress {
+  position: fixed; top: 0; left: 0;
+  height: 3px;
+  background: var(--gold);
+  width: 0%;
+  transition: width 0.1s;
+  z-index: 200;
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<button id="scrollTop" title="Back to top">↑</button>
+
+<div class="page-wrap">
+
+<!-- ── HEADER ── -->
+<header class="book-header">
+  <p class="series-label">ML Aggarwal · ICSE · Class 10 Mathematics</p>
+  <h1>Chapter <span>3</span><br>Shares &amp; Dividends</h1>
+  <p class="subtitle">Complete Solutions — Exercise 3, MCQs, Assertion-Reason &amp; Chapter Test</p>
+</header>
+
+<!-- ── TOC ── -->
+<nav class="toc">
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#exercise3">Exercise 3 (Q1–Q32)</a></li>
+    <li><a href="#mcq">Multiple Choice Questions (Q1–Q9)</a></li>
+    <li><a href="#ar">Assertion-Reason Type Questions (Q1–Q3)</a></li>
+    <li><a href="#ct">Chapter Test (Q1–Q11)</a></li>
+  </ul>
+</nav>
+
+<!-- ── KEY FORMULAS ── -->
+<div class="formula-box">
+  <h2>📌 Key Formulas at a Glance</h2>
+  <div class="formula-grid">
+    <div class="formula-item">
+      <div class="fname">Annual Dividend</div>
+      <div class="fexpr">Shares × Rate% × Face Value / 100</div>
+    </div>
+    <div class="formula-item">
+      <div class="fname">No. of Shares</div>
+      <div class="fexpr">Total Investment ÷ Market Value</div>
+    </div>
+    <div class="formula-item">
+      <div class="fname">MV at Premium</div>
+      <div class="fexpr">FV + Premium Amount</div>
+    </div>
+    <div class="formula-item">
+      <div class="fname">MV at Discount</div>
+      <div class="fexpr">FV − Discount Amount</div>
+    </div>
+    <div class="formula-item">
+      <div class="fname">% Return</div>
+      <div class="fexpr">(Annual Income ÷ Investment) × 100</div>
+    </div>
+    <div class="formula-item">
+      <div class="fname">Market Price (given return%)</div>
+      <div class="fexpr">(Dividend per share ÷ Return%) × 100</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     EXERCISE 3
+════════════════════════════════════════════════ -->
+<h2 class="section-title" id="exercise3"><span class="sec-num">EX 3</span>Exercise 3</h2>
+
+<!-- Q1 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 1</span>
+    <span class="q-text">Find the dividend received on 60 shares of ₹20 each if 9% dividend is declared.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Dividend is always calculated on Face Value (Nominal Value), not market price.</div>
+    <ul class="steps">
+      <li>Dividend on 1 share = 9% of ₹20 = (9/100) × 20 = <strong>₹1.80</strong></li>
+      <li>Dividend on 60 shares = 60 × ₹1.80</li>
+    </ul>
+    <div class="ans-box">Annual Dividend = ₹108</div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 2</span>
+    <span class="q-text">A company declares 8% dividend. A man receives ₹2840 as dividend. Find the nominal value of his shares.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Dividend% is applied on Nominal Value. So: 8% × NV = ₹2840. Solve for NV.</div>
+    <ul class="steps">
+      <li>Let Nominal Value = ₹x</li>
+      <li>(8/100) × x = 2840</li>
+      <li>x = 2840 × 100 ÷ 8 = ₹35,500</li>
+    </ul>
+    <div class="ans-box">Nominal Value of shares = ₹35,500</div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 3</span>
+    <span class="q-text">A man buys 250, ten-rupee shares each at ₹12.50. Rate of dividend = 7%. Find (a) annual dividend, (b) % return on investment.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(a) Annual Dividend</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Dividend uses Face Value (₹10), not market price. Investment uses Market Value (₹12.50).</div>
+    <ul class="steps">
+      <li>FV = ₹10, MV = ₹12.50, Shares = 250</li>
+      <li>Total Face Value = 250 × 10 = ₹2,500</li>
+      <li>Dividend = 7% of ₹2,500 = ₹175</li>
+    </ul>
+    <div class="ans-box">Annual Dividend = ₹175</div>
+
+    <p class="sub-part">(b) % Return</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">% Return = (Income ÷ Actual Money Invested) × 100. Investment = Shares × MV.</div>
+    <ul class="steps">
+      <li>Investment = 250 × ₹12.50 = ₹3,125</li>
+      <li>% Return = (175 ÷ 3125) × 100 = 5.6%</li>
+    </ul>
+    <div class="ans-box">% Return = 5.6%</div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 4</span>
+    <span class="q-text">Find the market price of 5% ₹100 share when a person gets ₹65 dividend by investing ₹1430.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Find no. of shares from dividend formula, then Market Price = Total Investment ÷ No. of Shares.</div>
+    <ul class="steps">
+      <li>Let shares = x &nbsp;⟹&nbsp; x × 5% × 100 = 65 &nbsp;⟹&nbsp; 5x = 65 &nbsp;⟹&nbsp; x = 13</li>
+      <li>Market Price = 1430 ÷ 13 = ₹110</li>
+    </ul>
+    <div class="ans-box">Market Price per share = ₹110</div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 5</span>
+    <span class="q-text">Govind buys 50 shares of FV ₹100 at ₹132. Dividend = 7.5% p.a. (i) Investment? (ii) Annual income? (iii) Extra shares for ₹150 more income?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Investment</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Investment is at Market Value (the actual price paid).</div>
+    <ul class="steps"><li>Investment = 50 × ₹132 = ₹6,600</li></ul>
+    <div class="ans-box">Investment = ₹6,600</div>
+
+    <p class="sub-part">(ii) Annual Income</p>
+    <ul class="steps"><li>Income = 50 × 7.5% × 100 = ₹375</li></ul>
+    <div class="ans-box">Annual Income = ₹375</div>
+
+    <p class="sub-part">(iii) Extra Shares for ₹150 more</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Find total shares needed for new income (375+150 = ₹525), then subtract existing 50 shares.</div>
+    <ul class="steps">
+      <li>New income = ₹375 + ₹150 = ₹525</li>
+      <li>New shares x: x × 7.5% × 100 = 525 &nbsp;⟹&nbsp; 7.5x = 525 &nbsp;⟹&nbsp; x = 70</li>
+      <li>Extra shares = 70 − 50 = 20</li>
+    </ul>
+    <div class="ans-box">Extra shares to buy = 20</div>
+  </div>
+</div>
+
+<!-- Q6 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 6</span>
+    <span class="q-text">A lady holds 1800, ₹100 shares paying 15% dividend. Find annual dividend. Bought at 40% premium, find % return.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">At 40% premium, MV = 100 + 40 = ₹140. % Return uses total investment at MV.</div>
+    <ul class="steps">
+      <li>Annual Dividend = 1800 × 15% × 100 = ₹27,000</li>
+      <li>MV per share = ₹100 + 40% of ₹100 = ₹140</li>
+      <li>Total Investment = 1800 × 140 = ₹2,52,000</li>
+      <li>% Return = (27000 ÷ 252000) × 100 = 75/7 = 10 5/7 %</li>
+    </ul>
+    <div class="ans-box">Annual Dividend = ₹27,000 &nbsp;|&nbsp; % Return = 10⁵⁄₇ %</div>
+  </div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 7</span>
+    <span class="q-text">What sum to invest in ₹25 shares at ₹36, to earn ₹720 income? Dividend = 12%. Also find % return.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Find shares from dividend formula, then Investment = Shares × MV. % Return = Income ÷ Investment × 100.</div>
+    <ul class="steps">
+      <li>x × 12% × 25 = 720 &nbsp;⟹&nbsp; 3x = 720 &nbsp;⟹&nbsp; x = 240 shares</li>
+      <li>Investment = 240 × ₹36 = ₹8,640</li>
+      <li>% Return = (720 ÷ 8640) × 100 = 25/3 = 8⅓%</li>
+    </ul>
+    <div class="ans-box">Sum to invest = ₹8,640 &nbsp;|&nbsp; % Return = 8⅓%</div>
+  </div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 8</span>
+    <span class="q-text">Ashok invests ₹26400 in 12% ₹25 shares. Dividend = ₹2475. Find (i) no. of shares, (ii) market value.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) No. of Shares</p>
+    <ul class="steps">
+      <li>x × 12% × 25 = 2475 &nbsp;⟹&nbsp; 3x = 2475 &nbsp;⟹&nbsp; x = 825</li>
+    </ul>
+    <div class="ans-box">No. of shares = 825</div>
+    <p class="sub-part">(ii) Market Value</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Market Value = Total Investment ÷ No. of Shares.</div>
+    <ul class="steps"><li>MV = ₹26,400 ÷ 825 = ₹32</li></ul>
+    <div class="ans-box">Market Value per share = ₹32</div>
+  </div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 9</span>
+    <span class="q-text">Man invests ₹4500 in 7.5% ₹100 shares at 10% discount. Find (i) no. of shares, (ii) annual income.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">At discount: MV = FV − Discount%. Shares are purchased at MV, but dividend is on FV.</div>
+    <p class="sub-part">(i) No. of Shares</p>
+    <ul class="steps">
+      <li>MV = 100 − 10% of 100 = ₹90</li>
+      <li>Shares = ₹4500 ÷ ₹90 = 50</li>
+    </ul>
+    <div class="ans-box">No. of shares = 50</div>
+    <p class="sub-part">(ii) Annual Income</p>
+    <ul class="steps"><li>Income = 50 × 7.5% × 100 = ₹375</li></ul>
+    <div class="ans-box">Annual Income = ₹375</div>
+  </div>
+</div>
+
+<!-- Q10 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 10</span>
+    <span class="q-text">Amit invests ₹36000 in 15% ₹100 shares at ₹20 premium. Find (i) no. of shares, (ii) yearly dividend, (iii) % return.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Premium means MV = FV + ₹20. No. of shares = Investment ÷ MV.</div>
+    <p class="sub-part">(i) No. of Shares</p>
+    <ul class="steps">
+      <li>MV = 100 + 20 = ₹120</li>
+      <li>Shares = 36000 ÷ 120 = 300</li>
+    </ul>
+    <div class="ans-box">No. of shares = 300</div>
+    <p class="sub-part">(ii) Yearly Dividend</p>
+    <ul class="steps"><li>Dividend = 300 × 15% × 100 = ₹4,500</li></ul>
+    <div class="ans-box">Yearly Dividend = ₹4,500</div>
+    <p class="sub-part">(iii) % Return</p>
+    <ul class="steps"><li>% Return = (4500 ÷ 36000) × 100 = 12.5%</li></ul>
+    <div class="ans-box">% Return = 12.5%</div>
+  </div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 11</span>
+    <span class="q-text">Mr. Gupta invested ₹33000 in ₹100 shares at 10% premium, dividend = 12%. Find (a) no. of shares, (b) annual dividend.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(a) No. of Shares</p>
+    <ul class="steps">
+      <li>MV = 100 + 10% of 100 = ₹110</li>
+      <li>Shares = 33000 ÷ 110 = 300</li>
+    </ul>
+    <div class="ans-box">No. of shares = 300</div>
+    <p class="sub-part">(b) Annual Dividend</p>
+    <ul class="steps"><li>Dividend = 300 × 12% × 100 = ₹3,600</li></ul>
+    <div class="ans-box">Annual Dividend = ₹3,600</div>
+  </div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 12</span>
+    <span class="q-text">A man buys ₹10 par shares at par, 8% dividend, receives ₹300. Find no. of shares.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">At par: MV = FV = ₹10. Use dividend formula to find shares.</div>
+    <ul class="steps">
+      <li>x × 8% × 10 = 300 &nbsp;⟹&nbsp; 0.8x = 300 &nbsp;⟹&nbsp; x = 375</li>
+    </ul>
+    <div class="ans-box">No. of shares = 375</div>
+  </div>
+</div>
+
+<!-- Q13 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 13</span>
+    <span class="q-text">Man invests ₹8800 in ₹100 shares at 10% premium, earns ₹1200 dividend. Find (i) no. of shares, (ii) dividend %.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) No. of Shares</p>
+    <ul class="steps">
+      <li>MV = 100 + 10 = ₹110</li>
+      <li>Shares = 8800 ÷ 110 = 80</li>
+    </ul>
+    <div class="ans-box">No. of shares = 80</div>
+    <p class="sub-part">(ii) Dividend %</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Use dividend formula with unknown rate r%: Shares × r% × FV = Total Dividend.</div>
+    <ul class="steps">
+      <li>80 × r% × 100 = 1200 &nbsp;⟹&nbsp; 80r = 1200 &nbsp;⟹&nbsp; r = 15%</li>
+    </ul>
+    <div class="ans-box">Dividend % = 15%</div>
+  </div>
+</div>
+
+<!-- Q14 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 14</span>
+    <span class="q-text">Man invests ₹45000 in 15% ₹100 shares at ₹125. Shares rise to ₹140; sells enough to raise ₹8400. Find (i) remaining shares, (ii) dividend.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Buy at ₹125, sell some at ₹140. Shares sold = Amount raised ÷ Selling price.</div>
+    <p class="sub-part">(i) Remaining Shares</p>
+    <ul class="steps">
+      <li>Total shares bought = 45000 ÷ 125 = 360</li>
+      <li>Shares sold = 8400 ÷ 140 = 60</li>
+      <li>Remaining = 360 − 60 = 300</li>
+    </ul>
+    <div class="ans-box">Shares still held = 300</div>
+    <p class="sub-part">(ii) Dividend on remaining shares</p>
+    <ul class="steps"><li>Dividend = 300 × 15% × 100 = ₹4,500</li></ul>
+    <div class="ans-box">Dividend = ₹4,500</div>
+  </div>
+</div>
+
+<!-- Q15 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 15</span>
+    <span class="q-text">Ajay owns 560 shares of FV ₹25, dividend = 9%, bought at ₹30. Find (i) dividend, (ii) rate of interest on investment.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Dividend</p>
+    <ul class="steps"><li>Dividend = 560 × 9% × 25 = ₹1,260</li></ul>
+    <div class="ans-box">Dividend = ₹1,260</div>
+    <p class="sub-part">(ii) % Return</p>
+    <ul class="steps">
+      <li>Investment = 560 × 30 = ₹16,800</li>
+      <li>% Return = (1260 ÷ 16800) × 100 = 15/2 = 7.5%</li>
+    </ul>
+    <div class="ans-box">Rate of Return = 7½%</div>
+  </div>
+</div>
+
+<!-- Q16 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 16</span>
+    <span class="q-text">Company: 10000 shares, ₹100 each, 8% dividend. (i) Total dividend paid? (ii) Ramesh bought 90 shares at ₹150: dividend and % return?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Total Dividend Paid by Company</p>
+    <ul class="steps"><li>= 10000 × 8% × 100 = ₹80,000</li></ul>
+    <div class="ans-box">Total Dividend = ₹80,000</div>
+    <p class="sub-part">(ii) Ramesh's Dividend &amp; % Return</p>
+    <ul class="steps">
+      <li>Ramesh's Dividend = 90 × 8% × 100 = ₹720</li>
+      <li>Investment = 90 × 150 = ₹13,500</li>
+      <li>% Return = (720 ÷ 13500) × 100 = 16/3 = 5⅓%</li>
+    </ul>
+    <div class="ans-box">Dividend = ₹720 &nbsp;|&nbsp; % Return = 5⅓%</div>
+  </div>
+</div>
+
+<!-- Q17 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 17</span>
+    <span class="q-text">Company: 500 shares, FV ₹120, 15% dividend. (i) Total dividend? (ii) Mr. Sharma's income (80 shares)? If return = 10%, find MV.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Total Dividend</p>
+    <ul class="steps"><li>= 500 × 15% × 120 = ₹9,000</li></ul>
+    <div class="ans-box">Total Dividend = ₹9,000</div>
+    <p class="sub-part">(ii) Mr. Sharma's Income &amp; MV</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Key formula: Rate% × FV = Return% × MV. Cross-multiply to find MV.</div>
+    <ul class="steps">
+      <li>Sharma's Income = 80 × 15% × 120 = ₹1,440</li>
+      <li>15% × 120 = 10% × MV &nbsp;⟹&nbsp; MV = (15 × 120) ÷ 10 = ₹180</li>
+    </ul>
+    <div class="ans-box">Annual Income = ₹1,440 &nbsp;|&nbsp; Market Value = ₹180</div>
+  </div>
+</div>
+
+<!-- Q18 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 18</span>
+    <span class="q-text">₹7500 invested in 10% dividend gives ₹500 income. Find price paid for each ₹100 share.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Find shares from dividend formula, then MV = Total Investment ÷ No. of Shares.</div>
+    <ul class="steps">
+      <li>x × 10% × 100 = 500 &nbsp;⟹&nbsp; 10x = 500 &nbsp;⟹&nbsp; x = 50 shares</li>
+      <li>MV = 7500 ÷ 50 = ₹150</li>
+    </ul>
+    <div class="ans-box">Price per share = ₹150</div>
+  </div>
+</div>
+
+<!-- Q19 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 19</span>
+    <span class="q-text">Man buys 400 ten-rupee shares at ₹2.50 premium, 8% dividend. Find (i) investment, (ii) dividend received, (iii) yield.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Yield = % Return on Investment = (Income ÷ Investment) × 100.</div>
+    <p class="sub-part">(i) Investment</p>
+    <ul class="steps">
+      <li>MV = 10 + 2.50 = ₹12.50</li>
+      <li>Investment = 400 × 12.50 = ₹5,000</li>
+    </ul>
+    <div class="ans-box">Investment = ₹5,000</div>
+    <p class="sub-part">(ii) Dividend Received</p>
+    <ul class="steps"><li>= 400 × 8% × 10 = ₹320</li></ul>
+    <div class="ans-box">Dividend = ₹320</div>
+    <p class="sub-part">(iii) Yield</p>
+    <ul class="steps"><li>Yield = (320 ÷ 5000) × 100 = 6.4%</li></ul>
+    <div class="ans-box">Yield = 6.4%</div>
+  </div>
+</div>
+
+<!-- Q20 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 20</span>
+    <span class="q-text">Man invests ₹10400 in 6% shares at ₹104 AND ₹11440 in 10.4% shares at ₹143. Total income? (FV = ₹100)</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Calculate income from each investment separately, then add. FV = ₹100 (assumed).</div>
+    <ul class="steps">
+      <li>Investment 1: Shares = 10400 ÷ 104 = 100 &nbsp;→&nbsp; Income = 100 × 6% × 100 = ₹600</li>
+      <li>Investment 2: Shares = 11440 ÷ 143 = 80 &nbsp;→&nbsp; Income = 80 × 10.4% × 100 = ₹832</li>
+      <li>Total Income = 600 + 832 = ₹1,432</li>
+    </ul>
+    <div class="ans-box">Total Income = ₹1,432</div>
+  </div>
+</div>
+
+<!-- Q21 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 21</span>
+    <span class="q-text">Two companies: 7% shares at ₹116 and 9% shares at ₹145. Which is more profitable? (FV = ₹100)</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Compare income per ₹1 invested. Higher ratio = more profitable investment.</div>
+    <ul class="steps">
+      <li>Company 1: Income on ₹116 = 7 &nbsp;→&nbsp; Income per ₹1 = 7/116 = 35/580</li>
+      <li>Company 2: Income on ₹145 = 9 &nbsp;→&nbsp; Income per ₹1 = 9/145 = 36/580</li>
+      <li>36 &gt; 35 &nbsp;→&nbsp; Company 2 is more profitable</li>
+    </ul>
+    <div class="ans-box">9% shares at ₹145 are more profitable</div>
+  </div>
+</div>
+
+<!-- Q22 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 22</span>
+    <span class="q-text">Which is better: 6% ₹100 shares at ₹120 OR 8% ₹10 shares at ₹15?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Compare income per ₹1 invested. The LCM method makes fractions comparable.</div>
+    <ul class="steps">
+      <li>Option 1: Income on ₹120 = 6% of 100 = ₹6 &nbsp;→&nbsp; per ₹1 = 6/120 = 1/20 = 15/300</li>
+      <li>Option 2: Income on ₹15 = 8% of 10 = ₹0.80 &nbsp;→&nbsp; per ₹1 = 0.8/15 = 4/75 = 16/300</li>
+      <li>16 &gt; 15 &nbsp;→&nbsp; Option 2 is better</li>
+    </ul>
+    <div class="ans-box">8% ₹10 shares at ₹15 is the better investment</div>
+  </div>
+</div>
+
+<!-- Q23 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 23</span>
+    <span class="q-text">Man invests ₹10080 in 6% ₹100 shares at ₹112. Shares fall to ₹96; sells all, buys 10% ₹10 shares at ₹8. Change in annual income?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Old income → sell shares → calculate sale proceeds → buy new shares → new income → find change.</div>
+    <ul class="steps">
+      <li>Old shares = 10080 ÷ 112 = 90 &nbsp;→&nbsp; Old Income = 90 × 6% × 100 = ₹540</li>
+      <li>Sale proceeds = 90 × 96 = ₹8,640</li>
+      <li>New shares = 8640 ÷ 8 = 1080 &nbsp;→&nbsp; New Income = 1080 × 10% × 10 = ₹1,080</li>
+      <li>Change = 1080 − 540 = ₹540 increase</li>
+    </ul>
+    <div class="ans-box">Annual income increased by ₹540</div>
+  </div>
+</div>
+
+<!-- Q24 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 24</span>
+    <span class="q-text">Sachin invests ₹8500 in 10% ₹100 shares at ₹170. Price rises ₹30; sells, reinvests in 12% ₹100 shares at ₹125. Find (i) sale proceeds, (ii) new shares, (iii) change in income.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Sale Proceeds</p>
+    <ul class="steps">
+      <li>Old shares = 8500 ÷ 170 = 50</li>
+      <li>Selling price = 170 + 30 = ₹200</li>
+      <li>Sale proceeds = 50 × 200 = ₹10,000</li>
+    </ul>
+    <div class="ans-box">Sale Proceeds = ₹10,000</div>
+    <p class="sub-part">(ii) New Shares</p>
+    <ul class="steps"><li>New shares = 10000 ÷ 125 = 80</li></ul>
+    <div class="ans-box">New shares = 80</div>
+    <p class="sub-part">(iii) Change in Income</p>
+    <ul class="steps">
+      <li>Old Income = 50 × 10% × 100 = ₹500</li>
+      <li>New Income = 80 × 12% × 100 = ₹960</li>
+      <li>Change = 960 − 500 = ₹460 increase</li>
+    </ul>
+    <div class="ans-box">Annual income increased by ₹460</div>
+  </div>
+</div>
+
+<!-- Q25 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 25</span>
+    <span class="q-text">Man buys 48 shares of ₹100 at ₹91. Sells 24 (face value ₹2400) at ₹95, rest at ₹85. Gain or loss?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">"Shares worth ₹2400" means face value ₹2400, so 2400 ÷ 100 = 24 shares. Compare total sale with cost.</div>
+    <ul class="steps">
+      <li>Total investment = 48 × 91 = ₹4,368</li>
+      <li>Shares worth FV ₹2400 = 2400 ÷ 100 = 24 shares sold at ₹95</li>
+      <li>Sale 1 = 24 × 95 = ₹2,280</li>
+      <li>Remaining shares = 24, sold at ₹85 → Sale 2 = 24 × 85 = ₹2,040</li>
+      <li>Total sale = 2280 + 2040 = ₹4,320</li>
+      <li>Loss = 4368 − 4320 = ₹48</li>
+    </ul>
+    <div class="ans-box">Loss of ₹48 on the total transaction</div>
+  </div>
+</div>
+
+<!-- Q26 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 26</span>
+    <span class="q-text">Man buys ₹50 gas shares at ₹80, gets 4% profit on investment. What rate% does company pay? Dividend on 200 shares?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">4% profit on MV (₹80) = dividend per share on FV (₹50). Set equal and solve.</div>
+    <ul class="steps">
+      <li>Profit per share = 4% of 80 = ₹3.20</li>
+      <li>Let company rate = x% &nbsp;⟹&nbsp; Dividend = x% of 50 = x/2</li>
+      <li>x/2 = 3.20 &nbsp;⟹&nbsp; x = 6.4%</li>
+      <li>Dividend on 200 shares = 200 × 6.4% × 50 = ₹640</li>
+    </ul>
+    <div class="ans-box">Company rate = 6.4% &nbsp;|&nbsp; Dividend on 200 shares = ₹640</div>
+  </div>
+</div>
+
+<!-- Q27 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 27</span>
+    <span class="q-text">₹100 shares sold at ₹20 discount. Return on investment = 15%. Find rate of dividend declared.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Return% = (Dividend ÷ MV) × 100. MV = 100 − 20 = ₹80. Solve for dividend rate.</div>
+    <ul class="steps">
+      <li>MV = 100 − 20 = ₹80</li>
+      <li>Let rate = x% &nbsp;⟹&nbsp; Dividend = x% of 100 = ₹x</li>
+      <li>15 = (x ÷ 80) × 100 &nbsp;⟹&nbsp; x = 15 × 80 ÷ 100 = 12%</li>
+    </ul>
+    <div class="ans-box">Rate of Dividend = 12%</div>
+  </div>
+</div>
+
+<!-- Q28 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 28</span>
+    <span class="q-text">Company declared 14% dividend on ₹50 shares. Return = 10%. Find market value.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Return% = (Dividend per share ÷ MV) × 100. Find MV.</div>
+    <ul class="steps">
+      <li>Dividend per share = 14% of 50 = ₹7</li>
+      <li>10 = (7 ÷ MV) × 100 &nbsp;⟹&nbsp; MV = 700 ÷ 10 = ₹70</li>
+    </ul>
+    <div class="ans-box">Market Value = ₹70 per share</div>
+  </div>
+</div>
+
+<!-- Q29 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 29</span>
+    <span class="q-text">Company: 10000 shares, ₹100, 5% dividend. (i) Total dividend? (ii) Income of man with 72 shares? (iii) If he gets 4% return, price paid?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Total Dividend</p>
+    <ul class="steps"><li>= 10000 × 5% × 100 = ₹50,000</li></ul>
+    <div class="ans-box">Total Dividend = ₹50,000</div>
+    <p class="sub-part">(ii) Man's Annual Income</p>
+    <ul class="steps"><li>= 72 × 5% × 100 = ₹360</li></ul>
+    <div class="ans-box">Annual Income = ₹360</div>
+    <p class="sub-part">(iii) Price paid per share</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">4% Return = (Income ÷ Investment) × 100. Investment = 72 × price. Solve for price.</div>
+    <ul class="steps">
+      <li>4 = (360 ÷ 72x) × 100 &nbsp;⟹&nbsp; 4 = 500/x &nbsp;⟹&nbsp; x = ₹125</li>
+    </ul>
+    <div class="ans-box">Price paid per share = ₹125</div>
+  </div>
+</div>
+
+<!-- Q30 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 30</span>
+    <span class="q-text">Man sells ₹100 shares (10% div) at 25% discount, invests in ₹100 shares (16% div) at ₹80. Income increased by ₹2000. No. of shares sold?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Express both incomes in terms of x (shares sold). New income − Old income = 2000. Solve for x.</div>
+    <ul class="steps">
+      <li>Selling price per old share = 100 − 25 = ₹75 &nbsp;→&nbsp; Proceeds = 75x</li>
+      <li>New shares = 75x ÷ 80 = 15x/16</li>
+      <li>Old Income = x × 10% × 100 = 10x</li>
+      <li>New Income = (15x/16) × 16% × 100 = 15x</li>
+      <li>15x − 10x = 2000 &nbsp;⟹&nbsp; 5x = 2000 &nbsp;⟹&nbsp; x = 400</li>
+    </ul>
+    <div class="ans-box">No. of shares sold = 400</div>
+  </div>
+</div>
+
+<!-- Q31 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 31</span>
+    <span class="q-text">Man invests ₹6750 partly in 6% shares at ₹140 and partly in 5% shares at ₹125. Total income = ₹280. Find each investment.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Income per ₹1 invested = Dividend per share ÷ MV. Set up equation with total income = ₹280.</div>
+    <ul class="steps">
+      <li>Let investment in 6% shares = ₹x &nbsp;→&nbsp; other = ₹(6750 − x)</li>
+      <li>Income on ₹x at 6%/₹140: (6/140)x = (3/70)x</li>
+      <li>Income on ₹(6750−x) at 5%/₹125: (5/125)(6750−x) = (1/25)(6750−x)</li>
+      <li>(3/70)x + (1/25)(6750−x) = 280</li>
+      <li>Multiply by 350: 15x + 14(6750−x) = 98000</li>
+      <li>15x + 94500 − 14x = 98000 &nbsp;⟹&nbsp; x = 3500</li>
+      <li>Other part = 6750 − 3500 = ₹3,250</li>
+    </ul>
+    <div class="ans-box">In 6% shares = ₹3,500 &nbsp;|&nbsp; In 5% shares = ₹3,250</div>
+  </div>
+</div>
+
+<!-- Q32 -->
+<div class="q-card">
+  <div class="q-header">
+    <span class="q-num">Q 32</span>
+    <span class="q-text">Divide ₹20304: one part in 9% ₹50 shares at 8% premium, other in 8% ₹25 shares at 8% discount, such that annual incomes are equal.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Find MV of each. Express income per ₹1, set equal, solve for x.</div>
+    <ul class="steps">
+      <li>9% ₹50 shares at 8% premium: MV = 50 + 4 = ₹54</li>
+      <li>8% ₹25 shares at 8% discount: MV = 25 − 2 = ₹23</li>
+      <li>Income on ₹x: (4.5/54)x = x/12</li>
+      <li>Income on ₹(20304−x): (2/23)(20304−x)</li>
+      <li>x/12 = (2/23)(20304−x) &nbsp;⟹&nbsp; 23x = 24(20304−x) &nbsp;⟹&nbsp; 47x = 487296</li>
+      <li>x = ₹10,368 &nbsp;→&nbsp; Other = ₹9,936</li>
+    </ul>
+    <div class="ans-box">₹10,368 in 9% ₹50 shares &nbsp;|&nbsp; ₹9,936 in 8% ₹25 shares</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     MCQ
+════════════════════════════════════════════════ -->
+<h2 class="section-title" id="mcq"><span class="sec-num">MCQ</span>Multiple Choice Questions</h2>
+
+<!-- MCQ 1 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 1</span>
+    <span class="q-text">Sum to buy 50, ₹40 shares at ₹38.50 is: (A) ₹1920 (B) ₹1924 (C) ₹1925 (D) ₹1952</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (C) ₹1925</div>
+    <div class="reason-tag">Reason</div>
+    <div class="reason-box">Money = No. of shares × Market Value (price paid). MV = ₹38.50.</div>
+    <ul class="steps"><li>= 50 × 38.50 = ₹1,925</li></ul>
+  </div>
+</div>
+
+<!-- MCQ 2 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 2</span>
+    <span class="q-text">Jagbeer invests ₹10320 in ₹100 shares at ₹14 discount. Shares bought: (A) 110 (B) 120 (C) 130 (D) 150</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (B) 120</div>
+    <ul class="steps">
+      <li>MV = 100 − 14 = ₹86</li>
+      <li>Shares = 10320 ÷ 86 = 120</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MCQ 3 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 3</span>
+    <span class="q-text">Nisha invests ₹19200 in ₹50 shares at 20% premium. Shares bought: (A) 640 (B) 384 (C) 320 (D) 160</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (C) 320</div>
+    <ul class="steps">
+      <li>MV = 50 + 20% of 50 = 50 + 10 = ₹60</li>
+      <li>Shares = 19200 ÷ 60 = 320</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MCQ 4 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 4</span>
+    <span class="q-text">₹40 shares at 25% premium. Mr. Jacob wants 280 shares. Investment: (A) ₹11200 (B) ₹14000 (C) ₹16800 (D) ₹8400</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (B) ₹14,000</div>
+    <ul class="steps">
+      <li>MV = 40 + 25% of 40 = 40 + 10 = ₹50</li>
+      <li>Investment = 280 × 50 = ₹14,000</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MCQ 5 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 5</span>
+    <span class="q-text">Arun owns 600 shares of ₹25, dividend = 8%. Annual income: (A) ₹48 (B) ₹480 (C) ₹600 (D) ₹1200</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (D) ₹1,200</div>
+    <ul class="steps"><li>= 600 × 8% × 25 = ₹1,200</li></ul>
+  </div>
+</div>
+
+<!-- MCQ 6 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 6</span>
+    <span class="q-text">Man invests ₹24000 in ₹60 shares at 20% discount, 10% dividend. Annual income: (A) ₹3000 (B) ₹2880 (C) ₹1500 (D) ₹1440</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (A) ₹3,000</div>
+    <ul class="steps">
+      <li>MV = 60 − 20% of 60 = 60 − 12 = ₹48</li>
+      <li>Shares = 24000 ÷ 48 = 500</li>
+      <li>Income = 500 × 10% × 60 = ₹3,000</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MCQ 7 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 7</span>
+    <span class="q-text">Salman has ₹50 shares, 15% dividend, annual income = ₹3000. Shares owned: (A) 80 (B) 400 (C) 600 (D) 800</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (B) 400</div>
+    <ul class="steps">
+      <li>x × 15% × 50 = 3000 &nbsp;⟹&nbsp; 7.5x = 3000 &nbsp;⟹&nbsp; x = 400</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MCQ 8 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 8</span>
+    <span class="q-text">Company A: ₹80, B: ₹100, C: ₹120 (all 12% ₹100 shares). Which is at premium? (A) A (B) B (C) C (D) A and C</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (C) Company C</div>
+    <div class="reason-tag">Reason</div>
+    <div class="reason-box">A share is at PREMIUM when Market Value &gt; Face Value. Company C: MV ₹120 &gt; FV ₹100.</div>
+    <ul class="steps">
+      <li>Company A: MV ₹80 &lt; FV ₹100 → Discount</li>
+      <li>Company B: MV ₹100 = FV ₹100 → At Par</li>
+      <li>Company C: MV ₹120 &gt; FV ₹100 → <strong>Premium ✓</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- MCQ 9 -->
+<div class="q-card mcq">
+  <div class="q-header">
+    <span class="q-num">MCQ 9</span>
+    <span class="q-text">Sum to buy 15 shares, FV ₹75, at 20% discount: (A) ₹60 (B) ₹90 (C) ₹1350 (D) ₹900</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="correct-opt">✓ Option (D) ₹900</div>
+    <ul class="steps">
+      <li>MV = 75 − 20% of 75 = 75 − 15 = ₹60</li>
+      <li>Cost = 15 × 60 = ₹900</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     ASSERTION-REASON
+════════════════════════════════════════════════ -->
+<h2 class="section-title" id="ar"><span class="sec-num">A-R</span>Assertion-Reason Questions</h2>
+
+<!-- AR 1 -->
+<div class="q-card ar">
+  <div class="q-header">
+    <span class="q-num">A-R 1</span>
+    <span class="q-text"><b>A:</b> Dividend depends on market value. &nbsp;<b>R:</b> Dividend is always % of face value.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="ar-label">Analysis</div>
+    <ul class="steps">
+      <li><b>Assertion (A) is FALSE</b> — Dividend does NOT depend on market value at all.</li>
+      <li><b>Reason (R) is TRUE</b> — Dividend is always a % of Face Value (Nominal Value), regardless of market price.</li>
+      <li>Example: 10% dividend on ₹100 FV = ₹10, whether MV is ₹80 or ₹150.</li>
+    </ul>
+    <div class="ans-box">Option (B): A is false, R is true</div>
+  </div>
+</div>
+
+<!-- AR 2 -->
+<div class="q-card ar">
+  <div class="q-header">
+    <span class="q-num">A-R 2</span>
+    <span class="q-text">Quotation: "10% ₹120 shares at ₹1200". <b>A:</b> Company is in profit. &nbsp;<b>R:</b> Share is at premium.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="ar-label">Analysis</div>
+    <ul class="steps">
+      <li>FV = ₹120, MV = ₹1200 → MV &gt; FV → Share IS at premium ✓ → <b>R is TRUE</b></li>
+      <li>Company paying 10% dividend → it is making profit → <b>A is TRUE</b></li>
+      <li>But: premium (R) is not the reason the company is in profit (A). Company profit depends on its earnings, not share price.</li>
+    </ul>
+    <div class="ans-box">Option (D): Both A and R are true, but R is NOT the correct reason for A</div>
+  </div>
+</div>
+
+<!-- AR 3 -->
+<div class="q-card ar">
+  <div class="q-header">
+    <span class="q-num">A-R 3</span>
+    <span class="q-text">1200 shares, FV ₹50, discount ₹10. <b>A:</b> Total investment = ₹60,000. &nbsp;<b>R:</b> MV of each share = ₹40.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="ar-label">Analysis</div>
+    <ul class="steps">
+      <li>MV = 50 − 10 = ₹40 → <b>R is TRUE</b> ✓</li>
+      <li>Investment = 1200 × 40 = ₹48,000 ≠ ₹60,000 → <b>A is FALSE</b> ✗</li>
+      <li>(₹60,000 would be at face value; we must use MV = ₹40)</li>
+    </ul>
+    <div class="ans-box">Option (B): A is false, R is true</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     CHAPTER TEST
+════════════════════════════════════════════════ -->
+<h2 class="section-title" id="ct"><span class="sec-num">CT</span>Chapter Test</h2>
+
+<!-- CT1 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 1</span>
+    <span class="q-text">Man receives ₹1080 dividend from 9% ₹20 shares. Find no. of shares.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <ul class="steps">
+      <li>x × 9% × 20 = 1080 &nbsp;⟹&nbsp; (9x/5) = 1080 &nbsp;⟹&nbsp; x = 600</li>
+    </ul>
+    <div class="ans-box">No. of shares = 600</div>
+  </div>
+</div>
+
+<!-- CT2 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 2</span>
+    <span class="q-text">Find % interest on capital invested in 18% shares when a ₹10 share costs ₹12.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">% Return = (Dividend per share ÷ Market Value) × 100.</div>
+    <ul class="steps">
+      <li>Dividend per share = 18% of ₹10 = ₹1.80</li>
+      <li>% Return = (1.80 ÷ 12) × 100 = 15%</li>
+    </ul>
+    <div class="ans-box">% Return on Investment = 15%</div>
+  </div>
+</div>
+
+<!-- CT3 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 3</span>
+    <span class="q-text">Mahesh invests ₹10000 in 10% ₹100 shares, dividend = ₹800. Find (i) MV per share, (ii) % return.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Market Value</p>
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">No. of shares = 10000/MV. Substitute in dividend formula and solve for MV.</div>
+    <ul class="steps">
+      <li>(10000/x) × 10% × 100 = 800 &nbsp;⟹&nbsp; 100000/x = 800 &nbsp;⟹&nbsp; x = ₹125</li>
+    </ul>
+    <div class="ans-box">Market Value = ₹125</div>
+    <p class="sub-part">(ii) % Return</p>
+    <ul class="steps"><li>% Return = (800 ÷ 10000) × 100 = 8%</li></ul>
+    <div class="ans-box">% Return = 8%</div>
+  </div>
+</div>
+
+<!-- CT4 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 4</span>
+    <span class="q-text">At what price should a 9% ₹100 share be quoted when money is worth 6%?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">"Money is worth 6%" means investor expects 6% return. Use Return% = (Dividend ÷ MV) × 100.</div>
+    <ul class="steps">
+      <li>Dividend = 9% of 100 = ₹9</li>
+      <li>6 = (9 ÷ MV) × 100 &nbsp;⟹&nbsp; MV = 900 ÷ 6 = ₹150</li>
+    </ul>
+    <div class="ans-box">Share should be quoted at ₹150</div>
+  </div>
+</div>
+
+<!-- CT5 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 5</span>
+    <span class="q-text">Man sells 2.5% ₹100 shares at ₹92, reinvests in 5% ₹100 shares at ₹115. Income increased by ₹90. Find (i) shares sold, (ii) shares bought, (iii) new income, (iv) % return.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Express both incomes in terms of x, set difference = 90, solve.</div>
+    <p class="sub-part">(i) Shares Sold</p>
+    <ul class="steps">
+      <li>Old income = x × 2.5% × 100 = 2.5x</li>
+      <li>New shares = 92x ÷ 115 = 4x/5</li>
+      <li>New income = (4x/5) × 5% × 100 = 4x</li>
+      <li>4x − 2.5x = 90 &nbsp;⟹&nbsp; 1.5x = 90 &nbsp;⟹&nbsp; x = 60</li>
+    </ul>
+    <div class="ans-box">Shares sold = 60</div>
+    <p class="sub-part">(ii) Shares Bought</p>
+    <ul class="steps"><li>= 4x/5 = 4×60/5 = 48</li></ul>
+    <div class="ans-box">Shares bought = 48</div>
+    <p class="sub-part">(iii) New Income</p>
+    <ul class="steps"><li>= 4x = 4 × 60 = ₹240</li></ul>
+    <div class="ans-box">New Income = ₹240</div>
+    <p class="sub-part">(iv) % Return</p>
+    <ul class="steps">
+      <li>Investment = 48 × 115 = ₹5,520</li>
+      <li>% Return = (240 ÷ 5520) × 100 = 100/23 = 4 8/23 %</li>
+    </ul>
+    <div class="ans-box">% Return = 4 8/23 %</div>
+  </div>
+</div>
+
+<!-- CT6 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 6</span>
+    <span class="q-text">Man has x shares of 6% ₹100 at par. Sells half at 10% discount, invests in 7% ₹50 shares at ₹10 premium. Income decreases by ₹120. Find (i) original shares, (ii) shares sold, (iii) initial income.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">New income = income from remaining half (old) + income from new shares. Old income − New income = 120.</div>
+    <ul class="steps">
+      <li>Selling price per old share = 100 − 10 = ₹90 &nbsp;→&nbsp; Proceeds = 90 × x/2 = 45x</li>
+      <li>New shares MV = 50 + 10 = ₹60 &nbsp;→&nbsp; New shares = 45x ÷ 60 = 3x/4</li>
+      <li>Old full income = x × 6% × 100 = 6x</li>
+      <li>New total income = (x/2)×6% ×100 + (3x/4)×7%×50 = 3x + 21x/8 = 45x/8</li>
+      <li>6x − 45x/8 = 120 &nbsp;⟹&nbsp; 3x/8 = 120 &nbsp;⟹&nbsp; x = 320</li>
+    </ul>
+    <div class="ans-box">Original shares = 320 &nbsp;|&nbsp; Shares sold = 160 &nbsp;|&nbsp; Initial Income = ₹1,920</div>
+  </div>
+</div>
+
+<!-- CT7 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 7</span>
+    <span class="q-text">Divide ₹101520: 8% ₹100 shares at 8% discount and 9% ₹50 shares at 8% premium, equal annual incomes.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <ul class="steps">
+      <li>MV₁ (8% discount) = 100 − 8 = ₹92 &nbsp;|&nbsp; MV₂ (8% premium) = 50 + 4 = ₹54</li>
+      <li>Income on ₹x: (8/92)x = (2/23)x</li>
+      <li>Income on ₹(101520−x): (4.5/54)(101520−x) = (101520−x)/12</li>
+      <li>(2/23)x = (101520−x)/12 &nbsp;⟹&nbsp; 24x = 23(101520−x) &nbsp;⟹&nbsp; 47x = 2334960</li>
+      <li>x = ₹49,680 &nbsp;→&nbsp; Other = ₹51,840</li>
+    </ul>
+    <div class="ans-box">₹49,680 in 8% ₹100 shares &nbsp;|&nbsp; ₹51,840 in 9% ₹50 shares</div>
+  </div>
+</div>
+
+<!-- CT8 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 8</span>
+    <span class="q-text">Man buys ₹40 shares, 10% dividend. He gets 16% profit on investment. At what price did he buy?</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">16% return on MV = dividend per share. So: 16% × MV = 10% × FV. Solve for MV.</div>
+    <ul class="steps">
+      <li>Dividend = 10% of 40 = ₹4</li>
+      <li>16 = (4 ÷ MV) × 100 &nbsp;⟹&nbsp; MV = 400 ÷ 16 = ₹25</li>
+    </ul>
+    <div class="ans-box">Purchase price per share = ₹25</div>
+  </div>
+</div>
+
+<!-- CT9 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 9</span>
+    <span class="q-text">Man invests 20%, 30%, 25% of savings in companies A (10%), B (12%), C (15%) at par. Total dividend = ₹4675. Find savings &amp; each investment.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">At par, MV = FV, so dividend% applies directly on the investment amount.</div>
+    <ul class="steps">
+      <li>Let savings = ₹x</li>
+      <li>Dividend from A = 10% × x/5 = x/50</li>
+      <li>Dividend from B = 12% × 3x/10 = 9x/250</li>
+      <li>Dividend from C = 15% × x/4 = 3x/80</li>
+      <li>x/50 + 9x/250 + 3x/80 = 4675</li>
+      <li>LCM = 2000: (40x + 72x + 75x)/2000 = 4675 &nbsp;⟹&nbsp; 187x = 9,350,000</li>
+      <li>x = ₹50,000</li>
+    </ul>
+    <div class="ans-box">Savings = ₹50,000 &nbsp;|&nbsp; A = ₹10,000 &nbsp;|&nbsp; B = ₹15,000 &nbsp;|&nbsp; C = ₹12,500</div>
+  </div>
+</div>
+
+<!-- CT10 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 10</span>
+    <span class="q-text">Virat and Dhoni each invest ₹36000. Virat: 15% ₹40 shares at 20% discount. Dhoni: ₹75 shares at 20% premium. Equal dividends. Find Dhoni's dividend rate.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <div class="reason-tag">Concept</div>
+    <div class="reason-box">Calculate Virat's dividend, set equal to Dhoni's (with unknown rate r%), solve for r.</div>
+    <ul class="steps">
+      <li>Virat: MV = 40 − 8 = ₹32 &nbsp;→&nbsp; Shares = 36000÷32 = 1125</li>
+      <li>Virat's Dividend = 1125 × 15% × 40 = ₹6,750</li>
+      <li>Dhoni: MV = 75 + 15 = ₹90 &nbsp;→&nbsp; Shares = 36000÷90 = 400</li>
+      <li>Dhoni's Dividend = 400 × r% × 75 = 300r</li>
+      <li>300r = 6750 &nbsp;⟹&nbsp; r = 22.5%</li>
+    </ul>
+    <div class="ans-box">Dhoni's dividend rate = 22.5%</div>
+  </div>
+</div>
+
+<!-- CT11 -->
+<div class="q-card ct">
+  <div class="q-header">
+    <span class="q-num">CT 11</span>
+    <span class="q-text">Man invests ₹36000 in 15% ₹100 shares at ₹120. Shares rise to ₹200; sells some to buy laptop worth ₹40000. Find (i) remaining shares, (ii) dividend.</span>
+  </div>
+  <button class="toggle-btn" onclick="toggle(this)"><span class="arr">▶</span> SHOW SOLUTION</button>
+  <div class="q-body">
+    <p class="sub-part">(i) Remaining Shares</p>
+    <ul class="steps">
+      <li>Total shares = 36000 ÷ 120 = 300</li>
+      <li>Shares sold: x × 200 = 40000 &nbsp;⟹&nbsp; x = 200</li>
+      <li>Remaining = 300 − 200 = 100</li>
+    </ul>
+    <div class="ans-box">Shares remaining = 100</div>
+    <p class="sub-part">(ii) Dividend on Remaining Shares</p>
+    <ul class="steps"><li>= 100 × 15% × 100 = ₹1,500</li></ul>
+    <div class="ans-box">Dividend = ₹1,500</div>
+  </div>
+</div>
+
+</div><!-- end page-wrap -->
+
+<footer>
+  ML Aggarwal Understanding ICSE Mathematics · Class 10 · Chapter 3 — Shares &amp; Dividends<br>
+  All 32 + 9 + 3 + 11 questions covered with reasoning
+</footer>
+
+<script>
+function toggle(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.querySelector('.arr').textContent = isOpen ? '▼' : '▶';
+  btn.querySelector('span:last-child') && (btn.querySelectorAll('span')[1].textContent = isOpen ? 'HIDE SOLUTION' : 'SHOW SOLUTION');
+}
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const s = document.documentElement;
+  const p = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+  document.getElementById('progress').style.width = p + '%';
+  document.getElementById('scrollTop').classList.toggle('visible', s.scrollTop > 300);
+});
+
+document.getElementById('scrollTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Stagger card animations
+document.querySelectorAll('.q-card').forEach((card, i) => {
+  card.style.animationDelay = (i * 0.03) + 's';
+});
+</script>
+</body>
+</html>
